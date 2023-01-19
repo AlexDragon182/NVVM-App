@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mvvmapp_navigation_graph"
+    app:startDestination="@id/breakingNewsFragment">
+
+    <fragment
+        android:id="@+id/breakingNewsFragment"
+        android:name="com.example.nvvmapplication.UI.Fragments.BreakingNewsFragment"
+        android:label="BreakingNewsFragment" >
+        <action
+            android:id="@+id/action_breakingNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/swipe_right_in"
+            app:exitAnim="@anim/swipe_left_out"
+            app:popEnterAnim="@anim/swipe_left_in"
+            app:popExitAnim="@anim/swipe_right_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/searchedNewsFragment"
+        android:name="com.example.nvvmapplication.UI.Fragments.SearchedNewsFragment"
+        android:label="SearchedNewsFragment" >
+        <action
+            android:id="@+id/action_searchedNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/swipe_right_in"
+            app:exitAnim="@anim/swipe_left_out"
+            app:popEnterAnim="@anim/swipe_left_in"
+            app:popExitAnim="@anim/swipe_right_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/savedNewsFragment"
+        android:name="com.example.nvvmapplication.UI.Fragments.SavedNewsFragment"
+        android:label="SavedNewsFragment" >
+        <action
+            android:id="@+id/action_savedNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/swipe_right_in"
+            app:exitAnim="@anim/swipe_left_out"
+            app:popEnterAnim="@anim/swipe_left_in"
+            app:popExitAnim="@anim/swipe_right_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.nvvmapplication.UI.Fragments.ArticleFragment"
+        android:label="ArticleFragment" />
+</navigation>
