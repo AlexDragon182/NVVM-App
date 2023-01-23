@@ -28,9 +28,6 @@
         <!--app:NavGraph="@navigation/news_nav_graph" sets the nav graph it is going to use  -->
         <!--android:name="androidx.navigation.fragment.NavHostFragment"  this tells this is the NavHostFragment-->
 
-
-
-
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

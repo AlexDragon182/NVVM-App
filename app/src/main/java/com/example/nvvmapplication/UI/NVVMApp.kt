@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 
 import androidx.navigation.ui.setupWithNavController
 import com.example.nvvmapplication.R
@@ -21,7 +22,12 @@ class NVVMApp : AppCompatActivity() {
         binding = ActivityNvvmappBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        binding.bottomNavigationView.setupWithNavController(navController)
 
     }
+
+    //Retrofit Setup
+    //json to kotlin class
+
+
 }
