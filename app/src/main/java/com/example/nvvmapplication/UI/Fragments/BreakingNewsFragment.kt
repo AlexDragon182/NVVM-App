@@ -2,25 +2,37 @@ package com.example.nvvmapplication.UI.Fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import androidx.recyclerview.widget.RecyclerView.TAG
 import com.example.nvvmapplication.R
 import com.example.nvvmapplication.UI.Adapters.NewsAdapter
 import com.example.nvvmapplication.UI.IUAI.NVVMApp
 import com.example.nvvmapplication.UI.IUAI.NewsViewModel
 import com.example.nvvmapplication.UI.Util.Resource
+import com.example.nvvmapplication.databinding.BreakingNewsBinding
 
 class BreakingNewsFragment : Fragment (R.layout.breaking_news){
 
+    private var _binding:BreakingNewsBinding? =null
+    private val binding get() = _binding!!
     lateinit var viewModel: NewsViewModel //for instantiate the viewmodel
     lateinit var newsAdapter: NewsAdapter
 
     val TAG = "BrekingNewsFragment"
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = BreakingNewsBinding.inflate(inflater, container,false)
+        return  binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,16 +63,16 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
     }
 
     private fun hideProgressBar(){
-        paginationProgressBar.visibility = View.INVISIBLE
+        binding.paginationProgressBar.visibility = View.INVISIBLE
     }
 
     private fun showProgressBar(){
-        paginationProgressBar.visibility = View.VISIBLE
+        binding.paginationProgressBar.visibility = View.VISIBLE
     }
 
     private fun setupRecyclerView(){
         newsAdapter = NewsAdapter()
-        rvBreakingNews.apply{
+        binding.rvBreakingNews.apply{
             adapter = newsAdapter
             LayoutManager = LinearLayoutManager(activity)
         }
