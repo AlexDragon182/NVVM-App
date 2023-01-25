@@ -1,6 +1,6 @@
 package com.example.nvvmapplication.UI.DataBase
 
-import Article
+import com.example.nvvmapplication.UI.models.Article
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete

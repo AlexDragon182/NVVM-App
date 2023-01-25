@@ -1,9 +1,11 @@
+package com.example.nvvmapplication.UI.models
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
 //to actually be able to save an article in our Database
-//tell android studio that this class is a table in our database (Article table in our database, with several columns)
+//tell android studio that this class is a table in our database (com.example.nvvmapplication.UI.models.Article table in our database, with several columns)
 
 @Entity(
 
@@ -22,4 +24,4 @@ data class Article(
     val url: String?,
     val urlToImage: String?
 )
-// Next Create Article DAO Data Acces Object
+// Next Create com.example.nvvmapplication.UI.models.Article DAO Data Acces Object

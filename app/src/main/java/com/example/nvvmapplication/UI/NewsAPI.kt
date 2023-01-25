@@ -1,6 +1,6 @@
 package com.example.nvvmapplication.UI
 
-import USANews
+import com.example.nvvmapplication.UI.models.USANews
 import com.example.nvvmapplication.UI.Util.Constants
 import retrofit2.Response
 import retrofit2.http.GET
