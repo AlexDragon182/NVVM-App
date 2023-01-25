@@ -10,10 +10,10 @@ import androidx.room.Query
 
 
 @Dao //room needs to know this is the interface that defines the function for us
-interface Article_DAO {
+interface ArticleDAO {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)// insert or update an article, on clonflict if we want to insert an article that already exists replace it
-    suspend fun upsert(article: Article):Long// update or insert , parameter the article that we want to insert in our database, returns a long which is the ID that was inserted
+    @Insert(onConflict = OnConflictStrategy.REPLACE)  // insert or update an article, on clonflict if we want to insert an article that already exists replace it
+    suspend fun upsert(article: Article):Long  // update or insert , parameter the article that we want to insert in our database, returns a long which is the ID that was inserted
 
     @Query("SELECT * FROM  articles") //to return all available articles in our database
     fun getAllArticles(): LiveData<List<Article>>// live data don't work with suspend functions
