@@ -1,4 +1,4 @@
-package com.example.nvvmapplication.UI
+package com.example.nvvmapplication.UI.IUAI
 
 import com.example.nvvmapplication.UI.Util.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
