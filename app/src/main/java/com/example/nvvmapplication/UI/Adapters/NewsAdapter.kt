@@ -1,18 +1,26 @@
 package com.example.nvvmapplication.UI.Adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.example.nvvmapplication.R
 import com.example.nvvmapplication.UI.models.Article
 import com.example.nvvmapplication.databinding.ItemArticlePreviewBinding
 
 class NewsAdapter   : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {//inherit from recycler view passing News adapter
 
-    inner class ArticleViewHolder(private val binding: ItemArticlePreviewBinding): RecyclerView.ViewHolder(binding.root){ //inner class for view-binding
+    private lateinit var context: Context
+
+    inner class ArticleViewHolder( view: View): RecyclerView.ViewHolder(view){
+        val binding = ItemArticlePreviewBinding.bind(view)
+
+        //inner class for view-binding
     }
     //implementing diff util, calculates the differences between 2 lists and enables to only update those different items, happens in background
     private val differCallback = object : DiffUtil.ItemCallback<Article>(){// for create a call back , to compare the lists passing the items on our list
@@ -27,20 +35,25 @@ class NewsAdapter   : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {//i
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-        return ArticleViewHolder(ItemArticlePreviewBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        context = parent.context
+        val view = LayoutInflater.from(context).inflate(R.layout.item_article_preview,parent,false)
+        return ArticleViewHolder(view)
+        //return ArticleViewHolder(ItemArticlePreviewBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
     override fun getItemCount(): Int {//for returning the amount of items we have in the recycler view
         return differ.currentList.size
     }
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {// set views accordingly
          val article = differ.currentList[position]// get current article
-            holder.itemView.apply {
-                Glide.with(this).load(article.urlToImage).into(ivArticleImage)// so we can reference our views
+            with(holder as ViewHolder){
 
-                tvSource.text = article.source?.name
-                tvTitle.text = article.title
-                tvDescription.text = article.description
-                tvPublishedAt.text = article.publishedAt
+
+                Glide.with(context).load(article.urlToImage).into(binding.ivArticleImage)// so we can reference our views
+
+                binding.tvSource.text = article.source?.name
+                binding.tvTitle.text = article.title
+                binding.tvDescription.text = article.description
+                binding.tvPublishedAt.text = article.publishedAt
                 onItemClickListener?.let { it(article) }  // it refers to the on Item Lambda function which takes Article as a parameter
             }
         }

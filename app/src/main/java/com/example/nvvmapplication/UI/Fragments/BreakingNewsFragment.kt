@@ -74,7 +74,7 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
         newsAdapter = NewsAdapter()
         binding.rvBreakingNews.apply{
             adapter = newsAdapter
-            LayoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(activity)
         }
     }
 
