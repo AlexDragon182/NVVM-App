@@ -23,5 +23,5 @@ data class Article(
     val title: String?,
     val url: String?,
     val urlToImage: String?
-)
+):java.io.Serializable
 // Next Create com.example.nvvmapplication.UI.models.Article DAO Data Acces Object
