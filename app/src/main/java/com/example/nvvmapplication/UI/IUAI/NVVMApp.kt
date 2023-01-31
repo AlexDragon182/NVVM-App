@@ -27,7 +27,7 @@ class NVVMApp : AppCompatActivity() {
         setContentView(binding.root)
 
         val newsRepository = NewsRepository(ArticleDataBase(this)) //instantiate our news repository
-        val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository) //instantiate our view-model provider factory
+        val viewModelProviderFactory = NewsViewModelProviderFactory(application,newsRepository) //instantiate our view-model provider factory
         viewModel = ViewModelProvider(this,viewModelProviderFactory).get(NewsViewModel::class.java) // instantiate our viewmodel provider
         binding.bottomNavigationView.setupWithNavController(navController)
 
