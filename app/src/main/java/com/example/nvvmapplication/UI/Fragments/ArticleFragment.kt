@@ -13,6 +13,7 @@ import com.example.nvvmapplication.UI.IUAI.NewsViewModel
 import com.example.nvvmapplication.UI.models.Article
 import com.example.nvvmapplication.databinding.ArticleBinding
 import com.example.nvvmapplication.databinding.SavedNewsBinding
+import com.google.android.material.snackbar.Snackbar
 
 class ArticleFragment :Fragment(R.layout.article) {
 
@@ -39,6 +40,10 @@ class ArticleFragment :Fragment(R.layout.article) {
         binding.webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url)
+        }
+        binding.fab.setOnClickListener{
+            viewModel.savedArticle(article)
+            Snackbar.make(view,"Article saved succesfully", Snackbar.LENGTH_SHORT).show()
         }
 
     }

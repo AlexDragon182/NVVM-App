@@ -17,8 +17,8 @@ class NewsAdapter   : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {//i
 
     private lateinit var context: Context
 
-    inner class ArticleViewHolder( view: View): RecyclerView.ViewHolder(view){
-        val binding = ItemArticlePreviewBinding.bind(view)
+    inner class ArticleViewHolder(val binding : ItemArticlePreviewBinding): RecyclerView.ViewHolder(binding.root){
+
 
         //inner class for view-binding
     }
@@ -36,9 +36,9 @@ class NewsAdapter   : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {//i
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         context = parent.context
-        val view = LayoutInflater.from(context).inflate(R.layout.item_article_preview,parent,false)
-        return ArticleViewHolder(view)
-        //return ArticleViewHolder(ItemArticlePreviewBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        //val view = LayoutInflater.from(context).inflate(R.layout.item_article_preview,parent,false)
+        //return ArticleViewHolder(view)
+        return ArticleViewHolder(ItemArticlePreviewBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
     override fun getItemCount(): Int {//for returning the amount of items we have in the recycler view
         return differ.currentList.size
@@ -46,10 +46,7 @@ class NewsAdapter   : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {//i
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {// set views accordingly
          val article = differ.currentList[position]// get current article
             with(holder as ViewHolder){
-
-
-                Glide.with(context).load(article.urlToImage).into(binding.ivArticleImage)// so we can reference our views
-
+// so we can reference our views
                 binding.tvSource.text = article.source?.name
                 binding.tvTitle.text = article.title
                 binding.tvDescription.text = article.description

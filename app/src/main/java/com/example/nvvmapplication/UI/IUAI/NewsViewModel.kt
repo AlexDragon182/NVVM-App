@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.nvvmapplication.UI.Repository.NewsRepository
 import com.example.nvvmapplication.UI.Util.Resource
+import com.example.nvvmapplication.UI.models.Article
 import com.example.nvvmapplication.UI.models.USANews
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -16,9 +17,12 @@ class NewsViewModel(// we cannot use constructor parameters by default on view m
     //create a live data object
     val breakingNews:MutableLiveData<Resource<USANews>> = MutableLiveData() //Resouce is used as repo class to a generic type T
     var breakingNewsPage = 1// to manage pagination
+    var breakingNewsResponse : USANews? = null
+
 //live data objects for search news response
     val searchNews:MutableLiveData<Resource<USANews>> = MutableLiveData() //Resouce is used as repo class to a generic type T
     var searchNewsPage = 1// to manage pagination
+    var searchNewsResponse : USANews? = null
 
     init {//init block of the used viewmodel. // uses internet permision in the manifest
         getBreakingNews("us")
@@ -41,7 +45,15 @@ class NewsViewModel(// we cannot use constructor parameters by default on view m
     private fun handleBreakingNewsResponse(response: Response<USANews>) : Resource<USANews>{//import response from retrofir
         if(response.isSuccessful){// chech if it is succesfull
             response.body()?.let { resultResponse -> // not equal to null , lamda give the name
-                return Resource.Success(resultResponse) // return resource success with resultResponse
+                breakingNewsPage ++
+                if (breakingNewsResponse == null){
+                    breakingNewsResponse = resultResponse
+                }else{
+                    val oldArticles = breakingNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(breakingNewsResponse?:resultResponse) // return resource success with resultResponse
             }
         }
         return Resource.Error(response.message())// if its not succesfull
@@ -50,10 +62,26 @@ class NewsViewModel(// we cannot use constructor parameters by default on view m
     private fun handleSearchNewsResponse(response: Response<USANews>) : Resource<USANews>{//import response from retrofir
         if(response.isSuccessful){// chech if it is succesfull
             response.body()?.let { resultResponse -> // not equal to null , lamda give the name
-                return Resource.Success(resultResponse) // return resource success with resultResponse
+                searchNewsPage ++
+                if (searchNewsResponse == null){
+                    searchNewsResponse = resultResponse
+                }else{
+                    val oldArticles = searchNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(searchNewsResponse?:resultResponse) // return resource success with resultResponse
             }
         }
         return Resource.Error(response.message())// if its not succesfull
+    }
+    fun savedArticle(article: Article) = viewModelScope.launch {
+        newsRepository.upsert(article)
+    }
+    fun getSavedNews() = newsRepository.getSavedNews()
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.nvvmapplication.UI.Repository
 
 import com.example.nvvmapplication.UI.DataBase.ArticleDataBase
 import com.example.nvvmapplication.UI.IUAI.RetrofitInstance
+import com.example.nvvmapplication.UI.models.Article
 
 class NewsRepository(
     val db: ArticleDataBase // needs the actual database to acces the functiosn and API
@@ -14,5 +15,11 @@ class NewsRepository(
 
     suspend fun searchNews(searchQuery: String,pageNumber: Int) = //function for searching for news
         RetrofitInstance.api.searchForNews(searchQuery,pageNumber)
+
+    suspend fun upsert(article : Article) = db.getArticleDao().upsert(article)
+
+    fun getSavedNews() = db.getArticleDao().getAllArticles()
+
+    suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)
 }
 
