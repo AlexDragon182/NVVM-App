@@ -53,7 +53,7 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
             }
 
             val currentId = findNavController().currentDestination?.id
-            if(currentId == R.id.searchedNewsFragment) {
+            if(currentId == R.id.breakingNewsFragment) {
                 findNavController().navigate(
                     R.id.action_searchedNewsFragment_to_articleFragment,
                     bundle
