@@ -6,38 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".UI.IUAI.NVVMApp">
 
-    <FrameLayout
-        android:id="@+id/flFragment"
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/FrNewsNavHost"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/mvvmapp_navigation_graph" />
 
-        <fragment
-            android:id="@+id/FrNewsNavHost"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/mvvmapp_navigation_graph"/>
+    <!-- app:defaultNavHost="true" defines this fragment as default -->
+    <!--app:NavGraph="@navigation/news_nav_graph" sets the nav graph it is going to use  -->
+    <!--android:name="androidx.navigation.fragment.NavHostFragment"  this tells this is the NavHostFragment-->
 
-        <!-- app:defaultNavHost="true" defines this fragment as default -->
-        <!--app:NavGraph="@navigation/news_nav_graph" sets the nav graph it is going to use  -->
-        <!--android:name="androidx.navigation.fragment.NavHostFragment"  this tells this is the NavHostFragment-->
-
-    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        app:menu="@menu/bottom_navigation_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

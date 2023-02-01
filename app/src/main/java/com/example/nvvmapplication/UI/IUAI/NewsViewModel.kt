@@ -115,7 +115,7 @@ class NewsViewModel(// we cannot use constructor parameters by default on view m
     private suspend fun safeBreakingNewsCall(countryCode: String) {
         breakingNews.postValue(Resource.Loading())
         try {
-            if (hasInternetConnection()) {
+            if (true) {
                 val response = newsRepository.getBreakingNews(
                     countryCode,
                     breakingNewsPage

@@ -52,11 +52,13 @@ class SearchedNewsFragment : Fragment(R.layout.searched_news) {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
+            /*
             findNavController().navigate(
                 R.id.action_searchedNewsFragment_to_articleFragment,
                 bundle
 
             )
+             */
         }
 
         //add delay until we add a littlebit of a request

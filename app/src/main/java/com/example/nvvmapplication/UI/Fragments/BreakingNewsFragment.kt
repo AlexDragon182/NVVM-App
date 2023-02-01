@@ -50,11 +50,13 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
             val bundle = Bundle().apply{
                 putSerializable("article",it)
             }
+            /*
             findNavController().navigate(
                 R.id.action_breakingNewsFragment_to_articleFragment,
                 bundle
 
             )
+             */
         }
 
         //subscribe changes to that live data, whenever you have breaking news this observer will be call
@@ -91,6 +93,12 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
             }
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getBreakingNews("us")
+    }
+
     private fun hideProgressBar(){
         binding.paginationProgressBar.visibility = View.INVISIBLE
         isLoading = false
