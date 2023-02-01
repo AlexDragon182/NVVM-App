@@ -50,13 +50,13 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
             val bundle = Bundle().apply{
                 putSerializable("article",it)
             }
-            /*
+
             findNavController().navigate(
                 R.id.action_breakingNewsFragment_to_articleFragment,
                 bundle
 
             )
-             */
+
         }
 
         //subscribe changes to that live data, whenever you have breaking news this observer will be call

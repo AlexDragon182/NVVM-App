@@ -43,14 +43,14 @@ class SavedNewsFragment : Fragment (R.layout.saved_news) {
             val bundle = Bundle().apply{
                 putSerializable("article",it)
             }
-            /*
+
             findNavController().navigate(
                 R.id.action_savedNewsFragment_to_articleFragment,
                 bundle
 
             )
 
-             */
+
         }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
