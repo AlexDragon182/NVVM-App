@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Toast
+import androidx.annotation.IdRes
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,12 +56,14 @@ class SearchedNewsFragment : Fragment(R.layout.searched_news) {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
+val currentId = findNavController().currentDestination?.id
+            if(currentId == R.id.searchedNewsFragment) {
+                findNavController().navigate(
+                    R.id.action_searchedNewsFragment_to_articleFragment,
+                    bundle
 
-            findNavController().navigate(
-                R.id.action_searchedNewsFragment_to_articleFragment,
-                bundle
-
-            )
+                )
+            }
 
         }
 

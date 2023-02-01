@@ -9,6 +9,7 @@ import android.widget.AbsListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,11 +52,14 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
                 putSerializable("article",it)
             }
 
-            findNavController().navigate(
-                R.id.action_breakingNewsFragment_to_articleFragment,
-                bundle
+            val currentId = findNavController().currentDestination?.id
+            if(currentId == R.id.searchedNewsFragment) {
+                findNavController().navigate(
+                    R.id.action_searchedNewsFragment_to_articleFragment,
+                    bundle
 
-            )
+                )
+            }
 
         }
 
