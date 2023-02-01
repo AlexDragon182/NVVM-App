@@ -21,7 +21,7 @@ class ArticleFragment :Fragment(R.layout.article) {
     private var _binding: ArticleBinding? = null
     private val binding get() = _binding!!
     lateinit var viewModel: NewsViewModel //for instantiate the viewmodel
-    val args: ArticleFragmentArgs by navArgs()
+    private val args by navArgs<ArticleFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +39,9 @@ class ArticleFragment :Fragment(R.layout.article) {
         val article = args.article
         binding.webView.apply {
             webViewClient = WebViewClient()
-            loadUrl(article.url)
+            article.url?.let{
+                loadUrl(article.url)
+            }
         }
         binding.fab.setOnClickListener{
             viewModel.savedArticle(article)

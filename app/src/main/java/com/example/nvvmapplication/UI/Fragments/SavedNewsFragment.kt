@@ -64,7 +64,7 @@ class SavedNewsFragment : Fragment (R.layout.saved_news) {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                val article = newsAdapter.differ.currentList[position]
+                val article = newsAdapter.currentList.get(position)
                 viewModel.deleteArticle(article)
                 Snackbar.make(view,"Succesfullu deleted article",Snackbar.LENGTH_LONG).apply {
                     setAction("Undo"){
@@ -80,13 +80,13 @@ class SavedNewsFragment : Fragment (R.layout.saved_news) {
         }
 
         viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles ->
-            newsAdapter.differ.submitList(articles)
+            newsAdapter.submitList(articles)
         })
     }
 
 
     private fun setupRecyclerView(){// function to setup recycler view
-        newsAdapter = NewsAdapter()// variable newsAdapter set it up to NewsAdapter(the real adapter)
+        newsAdapter = NewsAdapter(requireContext())// variable newsAdapter set it up to NewsAdapter(the real adapter)
         binding.rvSavedNews.apply{   // apply the adapter in the layout
             adapter = newsAdapter // set the adapter to news adapter
             layoutManager = LinearLayoutManager(activity) // set layout Manager to linear Layout Manager activity
