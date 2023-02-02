@@ -40,20 +40,15 @@ class SavedNewsFragment : Fragment (R.layout.saved_news) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NVVMApp).viewModel //viewmodel instantiated
         setupRecyclerView()
+
         newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply{
-                putSerializable("article",it)
+            val currentId = findNavController().currentDestination?.id
+            if (currentId == R.id.savedNewsFragment) {
+                val bundle = Bundle().apply {
+                    putSerializable("article", it)
+                }
+                findNavController().navigate(R.id.action_savedNewsFragment_to_articleFragment, bundle)
             }
-
-
-                findNavController().navigate(
-                    R.id.action_savedNewsFragment_to_articleFragment,
-                    bundle
-
-                )
-
-
-
         }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(

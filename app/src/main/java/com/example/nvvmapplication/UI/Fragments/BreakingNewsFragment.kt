@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Toast
@@ -47,21 +48,16 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
         viewModel = (activity as NVVMApp).viewModel //viewmodel instantiated
         setupRecyclerView() // call the view model to use it here
 
-        newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply{
-                putSerializable("article",it)
-            }
-
-            val currentId = findNavController().currentDestination?.id
+        newsAdapter.setOnItemClickListener{
+        val currentId = findNavController().currentDestination?.id
             if(currentId == R.id.breakingNewsFragment) {
-                findNavController().navigate(
-                    R.id.action_searchedNewsFragment_to_articleFragment,
-                    bundle
-
-                )
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
             }
-
+                    findNavController().navigate(R.id.action_breakingNewsFragment_to_articleFragment, bundle)
+                }
         }
+
 
         //subscribe changes to that live data, whenever you have breaking news this observer will be call
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->//pass a lycecycle owner casue it is one and the observer, set name to response
@@ -130,7 +126,6 @@ var isScrolling = false
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
             val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
-
             val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBegining = firstVisibleItemPosition >= 0

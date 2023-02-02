@@ -2,15 +2,13 @@ package com.example.nvvmapplication.UI.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
+import android.widget.ListView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.example.nvvmapplication.R
 import com.example.nvvmapplication.UI.models.Article
 import com.example.nvvmapplication.databinding.ItemArticlePreviewBinding
 
@@ -18,8 +16,7 @@ class NewsAdapter(
     private val context: Context
 ) : ListAdapter<Article, NewsAdapter.ArticleViewHolder>(ArticleDiffUtil) {//inherit from recycler view passing News adapter
 
-    private var onItemClickListener: ((Article) -> Unit)? =
-        null // for managing clicks outside item view
+    private var onItemClickListener: ((Article) -> Unit)? = null // for managing clicks outside item view
 
     fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
@@ -29,12 +26,14 @@ class NewsAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Article) = with(binding) {
+            root.setOnClickListener(){
+                onItemClickListener?.invoke(item)
+            }
             Glide.with(context).load(item.urlToImage).into(ivArticleImage)
             tvSource.text = item.source?.name
             tvTitle.text = item.title
             tvDescription.text = item.description
             tvPublishedAt.text = item.publishedAt
-            onItemClickListener?.invoke(item)   // it refers to the on Item Lambda function which takes Article as a parameter
         }
     }
 
