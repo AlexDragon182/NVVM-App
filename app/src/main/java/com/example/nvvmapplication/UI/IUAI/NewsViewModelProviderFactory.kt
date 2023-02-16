@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.nvvmapplication.UI.Repository.NewsRepository
 
+// this defines how our own view model should be created
+
 class NewsViewModelProviderFactory(
     val app: Application,
     val newsRepository: NewsRepository

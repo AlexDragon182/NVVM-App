@@ -22,6 +22,8 @@ import okhttp3.internal.applyConnectionSpec
 import retrofit2.Response
 import java.io.IOException
 
+//this is the view model used for
+
 class NewsViewModel(// we cannot use constructor parameters by default on view models , for doing that you need to create a view model provider factory , to define how view model should be created
     val app: Application,
     val newsRepository: NewsRepository //called a repository

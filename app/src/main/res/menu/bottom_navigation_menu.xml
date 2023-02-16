@@ -16,4 +16,6 @@
         android:title="Search News"
         android:icon="@drawable/ic_all_news"/>
 
+    <!-- name has to be the same as navigation map for it to work -->
+
 </menu>

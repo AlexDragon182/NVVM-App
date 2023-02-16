@@ -22,7 +22,7 @@
 
     <!-- app:defaultNavHost="true" defines this fragment as default -->
     <!--app:NavGraph="@navigation/news_nav_graph" sets the nav graph it is going to use  -->
-    <!--android:name="androidx.navigation.fragment.NavHostFragment"  this tells this is the NavHostFragment-->
+    <!--android:name="androidx.navigation.fragment.NavHostFragment"  this tells this is the NavHostFragment so nav graph can detect it -->
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -34,5 +34,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation_menu" />
+    <!-- app:menu="@menu/bottom_navigation_menu" /> adds the menu from the bottom navigation view  -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

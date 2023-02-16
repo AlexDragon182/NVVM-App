@@ -4,6 +4,8 @@ import com.example.nvvmapplication.UI.DataBase.ArticleDataBase
 import com.example.nvvmapplication.UI.IUAI.RetrofitInstance
 import com.example.nvvmapplication.UI.models.Article
 
+//this is the repository created once room and retrofit are both set up
+
 class NewsRepository(
     val db: ArticleDataBase // needs the actual database to acces the functiosn and API
 //get the data from our data base and our remote data source to the retrofit from the APR

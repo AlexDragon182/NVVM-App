@@ -16,8 +16,11 @@ import com.example.nvvmapplication.databinding.ActivityNvvmappBinding
 
 class NVVMApp : AppCompatActivity() {
 
-    lateinit var viewModel: NewsViewModel //
+    //to call the view model
+    lateinit var viewModel: NewsViewModel
+    // store the viewbinding in a var
     private lateinit var binding: ActivityNvvmappBinding
+    // finds the nav host fragment to define it as Nav Controller
     private val navController by lazy { (supportFragmentManager.findFragmentById(R.id.FrNewsNavHost) as NavHostFragment).navController }
 
 
@@ -26,10 +29,10 @@ class NVVMApp : AppCompatActivity() {
         binding = ActivityNvvmappBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val newsRepository = NewsRepository(ArticleDataBase(this)) //instantiate our news repository
-        val viewModelProviderFactory = NewsViewModelProviderFactory(application,newsRepository) //instantiate our view-model provider factory
-        viewModel = ViewModelProvider(this,viewModelProviderFactory).get(NewsViewModel::class.java) // instantiate our viewmodel provider
-        binding.bottomNavigationView.setupWithNavController(navController)
+        val newsRepository = NewsRepository(ArticleDataBase(this)) //instantiate our news repository , passing the Data base
+        val viewModelProviderFactory = NewsViewModelProviderFactory(application,newsRepository) //instantiate ViewModelProviderFactory
+        viewModel = ViewModelProvider(this,viewModelProviderFactory).get(NewsViewModel::class.java) // instantiate our viewmodel with the ViewModel Provider Factory
+        binding.bottomNavigationView.setupWithNavController(navController)// defines the bottom navigation view as the nav controller
 
     }
 

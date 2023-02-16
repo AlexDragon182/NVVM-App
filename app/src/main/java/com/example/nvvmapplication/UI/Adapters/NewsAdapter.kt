@@ -58,13 +58,13 @@ class NewsAdapter(
 
 }
 
-object ArticleDiffUtil : DiffUtil.ItemCallback<Article>() {
+object ArticleDiffUtil : DiffUtil.ItemCallback<Article>() {// Diffutil implementation for list
     override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
         return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.url == newItem.url// compares url because they are unique to the artivle
     }
 
 }
