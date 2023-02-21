@@ -45,11 +45,11 @@ class BreakingNewsFragment : Fragment (R.layout.breaking_news){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // this is the activity you pas to the setuprecyclerAdapter
-        viewModel = (activity as NVVMApp).viewModel //viewmodel instantiated
+        viewModel = (activity as NVVMApp).viewModel //viewmodel instantiated, so it can be used in this fragment
         setupRecyclerView() // call the view model to use it here
 
         newsAdapter.setOnItemClickListener{
-        val currentId = findNavController().currentDestination?.id
+        val currentId = findNavController().currentDestination?.id//
             if(currentId == R.id.breakingNewsFragment) {
             val bundle = Bundle().apply {
                 putSerializable("article", it)

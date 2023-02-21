@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.nvvmapplication.UI.Repository.NewsRepository
 
 // this defines how our own view model should be created
+// this is for using constructive parameters in view model, cause they cannot be used by default
 
 class NewsViewModelProviderFactory(
     val app: Application,

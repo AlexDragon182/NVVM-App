@@ -2,6 +2,7 @@ package com.example.nvvmapplication.UI.Util
 
 //recomended from google to wrap around the network responses
 //sealed class are able to define what load inherits from this class
+//useful to show failed or successed responses or loading state
 
 sealed class Resource<T> ( //usefull to diferentieate between succesfull and failed responses, generic type T
     val data : T? = null,

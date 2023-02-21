@@ -11,7 +11,10 @@ class NewsRepository(
 //get the data from our data base and our remote data source to the retrofit from the APR
 ) {// create network request and get the response of breaking news and display in recicle view
 
-    // get breaking news from API
+    //purpose of repository is to get data from database and our remote
+    //data source from retrofit from the API
+
+    // get breaking news from API function directly querys the API from breaking news
     suspend fun getBreakingNews(countryCode:String,pageNumber:Int) =
         RetrofitInstance.api.getBreakingNews(countryCode,pageNumber)
 

@@ -23,6 +23,8 @@ import retrofit2.Response
 import java.io.IOException
 
 //this is the view model used for
+//in the view model we call the functions of the News Repository and handel the responses of the request
+//and have live data type objects that will notify all of our fragments about changes
 
 class NewsViewModel(// we cannot use constructor parameters by default on view models , for doing that you need to create a view model provider factory , to define how view model should be created
     val app: Application,
@@ -75,9 +77,7 @@ class NewsViewModel(// we cannot use constructor parameters by default on view m
                         oldArticles?.addAll(it)
                     }
                 }
-                return Resource.Success(
-                    breakingNewsResponse ?: resultResponse
-                ) // return resource success with resultResponse
+                return Resource.Success(breakingNewsResponse ?: resultResponse) // return resource success with resultResponse
             }
         }
         return Resource.Error(response.message())// if its not succesfull
